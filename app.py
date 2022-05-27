@@ -2,6 +2,8 @@
 import os, random
 from flask import Flask, request, render_template
 
+from median_maintenance import get_median
+
 app = Flask(__name__)
 # from models import Result
 
@@ -14,9 +16,9 @@ def index():
         try:
             sequence_of_numbers = request.form['sequence']
             print(sequence_of_numbers)
-            rand_num  = random. random() 
-            results = rand_num
-            print(results)
+            arr_of_numbers = sequence_of_numbers.split(" ")
+            median = get_median(arr_of_numbers)
+            results = median
         except:
             errors.append(
                 "Unable to get sequence of numbers. Please type them in again."

@@ -129,65 +129,70 @@ class MaxHeap():
         print('Max Heap', str(heap))        
 
 
-min_h = MinHeap()
-max_h = MaxHeap()
+# HOW TO GENERATE MORE RANDOM SEQUENCES
+def generate_a_random_sequence_of_numbers(max_num, num_count):
+    # import random
+    # random.sample(range(100), 17) <- generates 17 random numbers between 0 and 99
+    return random(range(max_num), num_count)
+
+def get_median(arr_sequence):
+
+    print("Hereeee")
+
+    min_h = MinHeap()
+    max_h = MaxHeap()
+
+    for i in arr_sequence:
+
+        # when dealing with the rest of the elements of the stream
+        if min_h.length() != 0 and max_h.length() != 0:
+            if i < max_h.max_heap[0]:
+                max_h.insert_one(i)
+            else: 
+                min_h.insert_one(i)
+            
+            # re-balance
+            if abs(min_h.length() - max_h.length()) > 1:
+                if min_h.length() > max_h.length():
+                    min_h_root = min_h.extract()
+                    max_h.insert_one(min_h_root)
+                else:
+                    max_h_root = max_h.extract()
+                    min_h.insert_one(max_h_root)
+
+        # when dealing with the second element of the stream
+        if max_h.length() != 0 and min_h.length() == 0:
+            if i >= max_h.max_heap[0]:
+                min_h.insert_one(i)
+            else:
+                max_h.insert_one(i)
+                # re-balance
+                max_h_root = max_h.extract()
+                min_h.insert_one(max_h_root)
+
+        # when dealing with the first element of the stream
+        if max_h.length() == 0:
+            max_h.insert_one(i)
+
+    max_h.printString()
+    min_h.printString()
+
+    # return the median
+    if max_h.length() >= min_h.length():
+        median = max_h.extract()
+    else:
+        median = min_h.extract()
+
+    print('median =', median)
+    return median
+
 #arr = [20,9,19,11,14,8,15,23,6,50,32,22] # median = 15
 #arr = [1,2,34,23,20,19,18,50,6] # median = 19
 #arr = [1,2,3,4,5,6,7,8,9,10,11] # median = 6
 #arr = [10,9,8,7,6,5,4,3,2,1] # median = 5
-
 #arr = [39, 86, 26, 75, 63, 80, 11, 7, 53, 3, 74, 20, 27, 58, 36, 49, 69] # median = 49
-arr = [706, 902, 122, 372, 155, 929, 4, 58, 66, 971, 588, 772, 711, 392, 280, 109, 755, 51, 378, 490, 76, 25, 736, 771, 563, 78] # median = 378
+#arr = [706, 902, 122, 372, 155, 929, 4, 58, 66, 971, 588, 772, 711, 392, 280, 109, 755, 51, 378, 490, 76, 25, 736, 771, 563, 78] # median = 378
 
-# HOW TO GENERATE MORE RANDOM SEQUENCES
-# import random
-# random.sample(range(100), 17) <- generates 17 random numbers between 0 and 99 
-
-for i in arr:
-
-    # when dealing with the rest of the elements of the stream
-    if min_h.length() != 0 and max_h.length() != 0:
-        if i < max_h.max_heap[0]:
-            max_h.insert_one(i)
-        else: 
-            min_h.insert_one(i)
-        
-        # re-balance
-        if abs(min_h.length() - max_h.length()) > 1:
-            if min_h.length() > max_h.length():
-                min_h_root = min_h.extract()
-                max_h.insert_one(min_h_root)
-            else:
-                max_h_root = max_h.extract()
-                min_h.insert_one(max_h_root)
-
-    # when dealing with the second element of the stream
-    if max_h.length() != 0 and min_h.length() == 0:
-        if i >= max_h.max_heap[0]:
-            min_h.insert_one(i)
-        else:
-            max_h.insert_one(i)
-            # re-balance
-            max_h_root = max_h.extract()
-            min_h.insert_one(max_h_root)
-
-    # when dealing with the first element of the stream
-    if max_h.length() == 0:
-        max_h.insert_one(i)
-
-    #max_h.printString()
-    #min_h.printString()
-
-
-max_h.printString()
-min_h.printString()
-
-# return the median
-if max_h.length() >= min_h.length():
-    median = max_h.extract()
-else:
-    median = min_h.extract()
-
-print('median =', median)
+#arr_median = get_median(arr)
 
 
