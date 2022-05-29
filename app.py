@@ -4,8 +4,11 @@ from flask import Flask, request, render_template
 
 from median_maintenance import get_median
 
-app = Flask(__name__)
-# from models import Result
+app = Flask(__name__) # we initialize the Flask app
+
+@app.route('/hello')
+def hello():
+    return 'Web App with Python Flask!'
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
