@@ -19,7 +19,8 @@ def index():
         try:
             sequence_of_numbers = request.form['sequence']
             print(sequence_of_numbers)
-            arr_of_numbers = sequence_of_numbers.split(" ")
+            arr_of_numbers = [ int(i) for i in sequence_of_numbers.split(" ")]
+            print("arr_of_numbers = ", arr_of_numbers)
             median = get_median(arr_of_numbers)
             results = median
         except:
