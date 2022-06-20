@@ -2,6 +2,9 @@ class MinHeap():
 
     min_heap = []
 
+    def init(self):
+        self.min_heap = []
+
     def insert_one(self, entry):
         # insert one element into the min heap
         self.min_heap.append(entry)
@@ -66,6 +69,9 @@ class MinHeap():
 class MaxHeap():
 
     max_heap = []
+
+    def init(self):
+        self.max_heap = []
 
     def insert_one(self, entry):
         # put at the end of the heap
@@ -137,10 +143,11 @@ def generate_a_random_sequence_of_numbers(max_num, num_count):
 
 def get_median(arr_sequence):
 
-    print("Hereeee")
-
     min_h = MinHeap()
     max_h = MaxHeap()
+
+    min_h.init() # we initialize the Heao here to [] so we overwrite all existing numbers which were held in the heap
+    max_h.init() # we initialize the Heao here to [] so we overwrite all existing numbers which were held in the heap
 
     for i in arr_sequence:
 
@@ -184,6 +191,7 @@ def get_median(arr_sequence):
         median = min_h.extract()
 
     print('median =', median)
+    
     return median
 
 #arr = [20,9,19,11,14,8,15,23,6,50,32,22] # median = 15
@@ -192,7 +200,8 @@ def get_median(arr_sequence):
 #arr = [10,9,8,7,6,5,4,3,2,1] # median = 5
 #arr = [39, 86, 26, 75, 63, 80, 11, 7, 53, 3, 74, 20, 27, 58, 36, 49, 69] # median = 49
 #arr = [706, 902, 122, 372, 155, 929, 4, 58, 66, 971, 588, 772, 711, 392, 280, 109, 755, 51, 378, 490, 76, 25, 736, 771, 563, 78] # median = 378
-
+#arr = [1, 2, 34, 23, 20, 19, 18, 50, 6, 13, 12] # median = 18
+#arr = [1, 2, 6, 18,19 , 20, 23, 34, 50]
 #arr_median = get_median(arr)
 
 
