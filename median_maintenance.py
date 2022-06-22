@@ -32,12 +32,17 @@ class MinHeap():
         new_root = self.min_heap.pop()
         new_root_ind = 1
         self.min_heap.insert(new_root_ind - 1, new_root)
+
         # 3. bubble down the new root to its rightful place - follow the lower of both children
         continue_bubble_down = True
         while continue_bubble_down:
             # have the leaves been reached? if yes, interrupt
             if (2*new_root_ind) >= len(self.min_heap):
-                break
+                if self.min_heap[0] > self.min_heap[1]: # swap the only two elements in the heap
+                    first_elem = self.min_heap.pop(0)
+                    self.min_heap.append(first_elem)
+                break # VERY IMPORTANT - we need to break here as there is nothing else to do - we are at the edge case of a heap of one or two elements
+
             first_child_ind = 2*new_root_ind
             second_child_ind = first_child_ind + 1
             first_child = self.min_heap[first_child_ind - 1]
@@ -104,7 +109,11 @@ class MaxHeap():
         while continue_bubble_down:
             # have the leaves been reached? if yes, interrupt
             if (2 * new_root_ind) >= len(self.max_heap):
-                break
+                if self.max_heap[0] < self.max_heap[1]: # swap the only two elements in the heap
+                    first_elem = self.max_heap.pop(0)
+                    self.max_heap.append(first_elem)
+                break # VERY IMPORTANT - we need to break here as there is nothing else to do - we are at the edge case of a heap of one or two elements
+
             first_child_ind = 2 * new_root_ind
             second_child_ind = first_child_ind + 1
             first_child = self.max_heap[first_child_ind - 1]
@@ -202,6 +211,7 @@ def get_median(arr_sequence):
 #arr = [706, 902, 122, 372, 155, 929, 4, 58, 66, 971, 588, 772, 711, 392, 280, 109, 755, 51, 378, 490, 76, 25, 736, 771, 563, 78] # median = 378
 #arr = [1, 2, 34, 23, 20, 19, 18, 50, 6, 13, 12] # median = 18
 #arr = [1, 2, 6, 18,19 , 20, 23, 34, 50]
-#arr_median = get_median(arr)
+arr = [1, 5, 8, 9, 20]
+arr_median = get_median(arr)
 
 
