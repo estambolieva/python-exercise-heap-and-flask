@@ -38,9 +38,10 @@ class MinHeap():
         while continue_bubble_down:
             # have the leaves been reached? if yes, interrupt
             if (2*new_root_ind) >= len(self.min_heap):
-                if self.min_heap[0] > self.min_heap[1]: # swap the only two elements in the heap
-                    first_elem = self.min_heap.pop(0)
-                    self.min_heap.append(first_elem)
+                if len(self.min_heap) > 1: # DO the following only if we have more than 1 elements in the heap
+                    if self.min_heap[0] > self.min_heap[1]: # swap the only two elements in the heap
+                        first_elem = self.min_heap.pop(0)
+                        self.min_heap.append(first_elem)
                 break # VERY IMPORTANT - we need to break here as there is nothing else to do - we are at the edge case of a heap of one or two elements
 
             first_child_ind = 2*new_root_ind
@@ -109,9 +110,10 @@ class MaxHeap():
         while continue_bubble_down:
             # have the leaves been reached? if yes, interrupt
             if (2 * new_root_ind) >= len(self.max_heap):
-                if self.max_heap[0] < self.max_heap[1]: # swap the only two elements in the heap
-                    first_elem = self.max_heap.pop(0)
-                    self.max_heap.append(first_elem)
+                if len(self.max_heap) > 1: # DO the following only if we have more than 1 elements in the heap
+                    if self.max_heap[0] < self.max_heap[1]: # swap the only two elements in the heap
+                        first_elem = self.max_heap.pop(0)
+                        self.max_heap.append(first_elem)
                 break # VERY IMPORTANT - we need to break here as there is nothing else to do - we are at the edge case of a heap of one or two elements
 
             first_child_ind = 2 * new_root_ind
@@ -203,7 +205,7 @@ def get_median(arr_sequence):
     
     return median
 
-#arr = [20,9,19,11,14,8,15,23,6,50,32,22] # median = 15
+# arr = [20,9,19,11,14,8,15,23,6,50,32,22] # median = 15
 #arr = [1,2,34,23,20,19,18,50,6] # median = 19
 #arr = [1,2,3,4,5,6,7,8,9,10,11] # median = 6
 #arr = [10,9,8,7,6,5,4,3,2,1] # median = 5
@@ -212,6 +214,7 @@ def get_median(arr_sequence):
 #arr = [1, 2, 34, 23, 20, 19, 18, 50, 6, 13, 12] # median = 18
 #arr = [1, 2, 6, 18,19 , 20, 23, 34, 50]
 #arr = [1, 5, 8, 9, 20]
-#arr_median = get_median(arr)
+# arr = [4, 6, 1, 8, 3, 6, 9, 10]
+# arr_median = get_median(arr)
 
 
